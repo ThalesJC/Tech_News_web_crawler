@@ -1,5 +1,6 @@
 import requests
 import time
+from parsel import Selector
 from requests.exceptions import HTTPError, ReadTimeout
 
 
@@ -15,7 +16,11 @@ def fetch(url):
 
 # Requisito 2
 def scrape_updates(html_content):
-    """Seu código deve vir aqui"""
+    selec = Selector(html_content)
+    url_list = selec.css("a.cs-overlay-link ::attr(href)").getall()
+    if not url_list:
+        return []
+    return url_list
 
 
 # Requisito 3
