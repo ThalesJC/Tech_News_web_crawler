@@ -14,7 +14,6 @@ def fetch(url):
     return response_html.text
 
 
-# Requisito 2
 def scrape_updates(html_content):
     selec = Selector(html_content)
     url_list = selec.css("a.cs-overlay-link ::attr(href)").getall()
@@ -23,7 +22,6 @@ def scrape_updates(html_content):
     return url_list
 
 
-# Requisito 3
 def scrape_next_page_link(html_content):
     selec = Selector(html_content)
     next_page = selec.css("a.next.page-numbers::attr(href)").get()
@@ -31,9 +29,9 @@ def scrape_next_page_link(html_content):
         return None
     return next_page
 
-# Requisito 4
+
 def scrape_news(html_content):
-    """Seu código deve vir aqui"""
+    pass
 
 
 # Requisito 5
