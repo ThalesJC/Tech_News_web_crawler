@@ -31,7 +31,25 @@ def scrape_next_page_link(html_content):
 
 
 def scrape_news(html_content):
-    pass
+    selec = Selector(html_content)
+
+    url = selec.xpath('//link[@rel="canonical"]/@href').get()
+    title = selec.css('div.entry-header-inner.cs-bg-dark > h1 ::text').get()
+    date = selec.css('div.entry-header-inner.cs-bg-dark > ul > li.meta-date::text').get()
+    writer = selec.css('div.entry-header-inner.cs-bg-dark > ul > li.meta-author > span.author > a::text').get()
+    reading_time = selec.css('div.entry-header-inner.cs-bg-dark > ul > li.meta-reading-time::text').get()
+    summary = selec.css('div.entry-content > p:nth-of-type(1) ::text').getall()
+    category = selec.css('div.entry-header-inner.cs-bg-dark > div > div > a > span.label::text').get()
+    
+    return {
+        "url": url,
+        "title": title.strip(),
+        "timestamp": date,
+        "writer": writer,
+        "reading_time": int(reading_time.split()[0]),
+        "summary": ''.join(summary).strip(),
+        "category": category,
+    }
 
 
 # Requisito 5
