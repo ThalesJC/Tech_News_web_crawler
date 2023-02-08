@@ -35,12 +35,12 @@ def scrape_news(html_content):
 
     url = selec.xpath('//link[@rel="canonical"]/@href').get()
     title = selec.css('div.entry-header-inner.cs-bg-dark > h1 ::text').get()
-    date = selec.css('div.entry-header-inner.cs-bg-dark > ul > li.meta-date::text').get()
-    writer = selec.css('div.entry-header-inner.cs-bg-dark > ul > li.meta-author > span.author > a::text').get()
-    reading_time = selec.css('div.entry-header-inner.cs-bg-dark > ul > li.meta-reading-time::text').get()
+    date = selec.css('ul > li.meta-date::text').get()
+    writer = selec.css('ul > li.meta-author > span.author > a::text').get()
+    reading_time = selec.css('ul > li.meta-reading-time::text').get()
     summary = selec.css('div.entry-content > p:nth-of-type(1) ::text').getall()
-    category = selec.css('div.entry-header-inner.cs-bg-dark > div > div > a > span.label::text').get()
-    
+    category = selec.css(' a > span.label::text').get()
+
     return {
         "url": url,
         "title": title.strip(),
