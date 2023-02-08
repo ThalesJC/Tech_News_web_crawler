@@ -2,6 +2,7 @@ import requests
 import time
 from requests.exceptions import HTTPError, ReadTimeout
 
+
 def fetch(url):
     time.sleep(1)
     try:
@@ -10,6 +11,7 @@ def fetch(url):
     except (HTTPError, ReadTimeout):
         return None
     return response_html.text
+
 
 # Requisito 2
 def scrape_updates(html_content):
