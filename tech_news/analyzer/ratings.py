@@ -1,3 +1,6 @@
-# Requisito 10
+from tech_news.database import find_news
+
+
 def top_5_categories():
-    """Seu código deve vir aqui"""
+    result = find_news()
+    return print(result)
